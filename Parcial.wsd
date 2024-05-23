@@ -1,0 +1,41 @@
+@startuml
+
+
+== Registro de Usuario ==
+
+User -> Cliente: Iniciar proceso de registro
+activate Cliente
+Cliente  -> Validador: Tipo De Documento
+activate Validador
+Validador --> Cliente: Documento
+deactivate Validador
+Cliente -> GNumeorDC: Generar Numero de Identicacion
+activate GeneradorId
+GeneradorId --> Cliente: Número generado (1077224727)
+deactivate GeneradorId
+User--> Cliente: Registro exitoso, ID: 1077224727
+deactivate Cliente
+
+== Factura De Cliente ==
+
+User -> Cliente : Realizar búsqueda de Articulos 
+activate Cliente 
+User --> Cliente: Numero De La Factura 
+deactivate Cliente
+User --> Cliente : Fecha
+activate Cliente
+User --> Cliente:Nombre Del Cliente 
+
+== Préstamo de Libros ==
+
+User -> Bib: Solicitar préstamo de libro
+activate Bib
+Bib -> Bib: Verificar disponibilidad del libro
+Bib --> User: Libro disponible
+User -> Bib: Confirmar préstamo
+activate Bib
+Bib --> User: Préstamo confirmado
+deactivate Bib
+deactivate User
+
+@enduml
